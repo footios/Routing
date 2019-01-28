@@ -12,7 +12,7 @@ class FullPost extends Component {
   // So now we check for 'this.props.match.params.id'
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
+    console.log(this.props.id);
     if (this.props.match.params.id) {
       if (
         !this.state.loadedPost ||
@@ -36,7 +36,7 @@ class FullPost extends Component {
   render() {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
 
-    if (this.props.id) {
+    if (this.props.match.params.id) {
       post = <p style={{ textAlign: "center" }}>Loading...</p>;
     }
     if (this.state.loadedPost) {
