@@ -24,8 +24,8 @@ class Posts extends Component {
       })
       // udate the state incase smth went wrong
       .catch(error => {
-        //console.log(error);
-        this.setState({ error: true });
+        console.log(error);
+        // this.setState({ error: true });
       });
   }
 
