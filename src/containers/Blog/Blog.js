@@ -10,12 +10,9 @@ import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 
-// When checking whether a link is active or not,
-// it treats '/' as a prefix,
-// so we have to add 'exact' on the link, to tell react router
-// that the full path should be '/'
-// for '/' to be the active link.
-// <NavLink to="/" exact>
+// In order to override the class that is appended to the link,
+// You can add additional props
+// you can add activeClassName='my-active'
 
 class Blog extends Component {
   render() {
@@ -25,7 +22,7 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/" exact>
+                <NavLink to="/" exact activeClassName="my-active">
                   Home
                 </NavLink>
                 <NavLink
