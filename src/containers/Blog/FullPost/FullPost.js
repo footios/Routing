@@ -8,19 +8,18 @@ class FullPost extends Component {
     loadedPost: null
   };
 
-  componentDidUpdate() {
-    if (this.props.id) {
-      // Note: calling setState inhere creates an infinite loop
-      // so we set a second if(...)
-      // The first check is for when we haven't fetched a post yet...
-      // The second is for when we have a post in loadedPost and we want
-      // to switch to another.
+  // In the props of Router in 'match, parms' we have the 'id'.
+  // So now we check for 'this.props.match.params.id'
+
+  componentDidMount() {
+    console.log(this.props.match.params.id);
+    if (this.props.match.params.id) {
       if (
         !this.state.loadedPost ||
         (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
       ) {
-        axios.get("/posts/" + this.props.id).then(response => {
-          console.log(response);
+        axios.get("/posts/" + this.props.match.params.id).then(response => {
+          //console.log(response);
 
           this.setState({ loadedPost: response.data });
         });
