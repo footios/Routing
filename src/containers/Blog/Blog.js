@@ -9,6 +9,7 @@ import FullPost from "./FullPost/FullPost";
 
 class Blog extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="Blog">
         <header>

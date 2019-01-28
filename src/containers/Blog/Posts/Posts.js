@@ -36,11 +36,12 @@ class Posts extends Component {
   // Here in the props we got 'history' and there
   // we actually have some functions we can execute.
   // Functions for navigating around like go back or go forward,
-  // which do exactly what they sound like, they basically
+  // which do exactly what they sound like. They basically
   // do the same you have with the forward and backward buttons.
   // There also is this 'push' method which allows you to push
   // a new page onto the stack of pages because navigation
   // basically just is about a stack of pages.
+  // Here is it: 'push: ƒ push(path, state)'
 
   postSelectedHandler(id) {
     this.props.history.push({ pathname: "/" + id });
