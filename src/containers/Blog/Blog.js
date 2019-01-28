@@ -10,10 +10,7 @@ import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 
-// In order to override the class that is appended to the link,
-// You can add additional props
-// you can add activeClassName='my-active'
-
+// set an activeStyle={{}} if you don't want to use CSS classes
 class Blog extends Component {
   render() {
     return (
@@ -22,7 +19,15 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/" exact activeClassName="my-active">
+                <NavLink
+                  to="/"
+                  exact
+                  activeClassName="my-active"
+                  activeStyle={{
+                    color: "#fa923f",
+                    textDecoration: "underline"
+                  }}
+                >
                   Home
                 </NavLink>
                 <NavLink
