@@ -2,11 +2,20 @@ import React, { Component } from "react";
 //import axios from "axios";
 
 // Use Link so your page doesn't reload when you switch pages
-import { Route, Link } from "react-router-dom";
+// NavLink has some extra props which allows you to use some stylling
+// with this you get a class='active' atribute
+import { Route, NavLink } from "react-router-dom";
 
 import "./Blog.css";
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
+
+// When checking whether a link is active or not,
+// it treats '/' as a prefix,
+// so we have to add 'exact' on the link, to tell react router
+// that the full path should be '/'
+// for '/' to be the active link.
+// <NavLink to="/" exact>
 
 class Blog extends Component {
   render() {
@@ -16,8 +25,10 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
-                <Link
+                <NavLink to="/" exact>
+                  Home
+                </NavLink>
+                <NavLink
                   to={{
                     pathname: "/new-post",
                     hash: "#submit",
@@ -25,7 +36,7 @@ class Blog extends Component {
                   }}
                 >
                   New Post
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>
