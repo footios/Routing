@@ -7,17 +7,6 @@ import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 import FullPost from "./FullPost/FullPost";
 
-// Switch tells the react router,
-// hey please only load one of the routes.
-// The first one actually you find that matches from a given set of routes.
-// So now we don't load the clicked post and the NewPost
-
-// And of course you can also mix it,
-// you can put one route outside of switch.
-// So this will always get analyzed at least and potentially also
-// rendered if it fits
-// and then one of the following
-
 class Blog extends Component {
   render() {
     return (
