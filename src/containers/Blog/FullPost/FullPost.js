@@ -12,11 +12,12 @@ class FullPost extends Component {
   // So now we check for 'this.props.match.params.id'
 
   componentDidMount() {
-    console.log(this.props.id);
+    console.log("this..", this.props.id);
     if (this.props.match.params.id) {
       if (
         !this.state.loadedPost ||
-        (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
+        (this.state.loadedPost &&
+          this.state.loadedPost.id !== this.props.match.params.id)
       ) {
         axios.get("/posts/" + this.props.match.params.id).then(response => {
           //console.log(response);
