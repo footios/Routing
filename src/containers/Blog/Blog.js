@@ -16,7 +16,7 @@ class Blog extends Component {
             <ul>
               <li>
                 <NavLink
-                  to="/"
+                  to="/posts/"
                   exact
                   activeClassName="my-active"
                   activeStyle={{
@@ -43,7 +43,7 @@ class Blog extends Component {
             so that "/" won't consume the new posts first.*/}
         <Switch>
           <Route path="/new-post" component={NewPost} />
-          <Route path="/" component={Posts} />
+          <Route path="/posts/" component={Posts} />
         </Switch>
       </div>
     );
