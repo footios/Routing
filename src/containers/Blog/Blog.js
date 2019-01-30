@@ -7,8 +7,11 @@ import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 
 class Blog extends Component {
+  componentDidMount = () => {
+    console.log("this.props in Blog", this.props);
+  };
+
   render() {
-    console.log(this.props);
     return (
       <div className="Blog">
         <header>
