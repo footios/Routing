@@ -12,7 +12,7 @@ class Posts extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    console.log("this.props in Posts:", this.props);
     axios
       .get("/posts")
       .then(response => {
