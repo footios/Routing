@@ -13,6 +13,22 @@ class NewPost extends Component {
   };
 
   componentDidMount = () => {
+    // An alternative to render conditionaly NewPost in Blog.js
+    // would be to redirect the user back if not authenticated.
+    // e.g. If unauth => this.props.history.replace('/posts')
+
+    // !!!!!!!!!!!!!!!!!
+    // This is how you work with the react router,
+    // this is how I want you to think about it.
+    // You control a lot of it, by the way you render its components.
+    // And if that route isn't rendered, you can't reach that route.
+    // The definition isn't rendered so the component connected to it can't be loaded.
+    // This is how you have to think about it
+    // and how you have to structure your application.
+    // Wrap your head around this this is really crucial
+    // to get right and crucial to understand.
+    // !!!!!!!!!!!!!!
+
     console.log("this.props in NewPost", this.props);
   };
 
@@ -22,27 +38,10 @@ class NewPost extends Component {
       content: this.state.content,
       author: this.state.author
     };
-    // Switch the page not with 'Redirect' but using the 'history' props.
-    // and that history prop has a couple of convenience methods
-    // we can use for replacing the current route
-    // or pushing a new route.
-    // We can access 'this.props.history' and there the 'push' method
-    // which allows us to push a new page.
-
-    // Technically, 'push' pushes this page onto the stack,
-    // so if we click the back button, we go back to the new post page.
-    // Whereas redirect replaces current page, so go back doesn' work as expected.
-    // If you clicked several times you eventualy go back to posts,
-    // but never to NewPost.
-
-    // If you don't want to use the approach of rendering that component with Redirect,
-    // 'replace' or 'push' also is a way,
-    // of changing the page after some operation finished.
-    // Note: 'replace' has the same behavior as 'Redirect'!
 
     axios.post("/posts", data).then(response => {
       console.log(response);
-      this.props.history.replace("/posts");
+      this.props.history.push("/posts");
       // this.setState({ submitted: true });
     });
   };

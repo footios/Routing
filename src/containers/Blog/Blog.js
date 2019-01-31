@@ -7,6 +7,10 @@ import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 
 class Blog extends Component {
+  state = {
+    auth: false
+  };
+
   componentDidMount = () => {
     console.log("this.props in Blog", this.props);
   };
@@ -42,9 +46,18 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        {/* */}
+        {/* Typically 'Guards' is for example used when you don't know 
+          whether the user is authenticated or not,
+          and there are some paths in your application, 
+          some routes you only want to allow the user to visit if
+          he is authenticated.
+          So e.g if we want to make sure that NewPosts can't be reached, 
+          we can simply render this conditionally.
+          This is a Guard! */}
         <Switch>
-          <Route path="/new-post" component={NewPost} />
+          {this.state.auth ? (
+            <Route path="/new-post" component={NewPost} />
+          ) : null}
           <Route path="/posts/" component={Posts} />
           <Redirect from="/" to="/posts" />
         </Switch>
