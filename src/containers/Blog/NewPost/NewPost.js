@@ -22,20 +22,30 @@ class NewPost extends Component {
       content: this.state.content,
       author: this.state.author
     };
-    // second arg: data we sent
-    // you can pass also a 3d arg to configure that request
+    // Switch the page not with 'Redirect' but using the 'history' props.
+    // and that history prop has a couple of convenience methods
+    // we can use for replacing the current route
+    // or pushing a new route.
+    // We can access 'this.props.history' and there the 'push' method
+    // which allows us to push a new page.
+
+    // Technically, 'push' pushes this page onto the stack,
+    // so if we click the back button, we go back to the new post page.
+    // Whereas redirect replaces current page, so go back doesn' work as expected.
+    // If you clicked several times you eventualy go back to posts,
+    // but never to NewPost.
+
+    // If you don't want to use the approach of rendering that component with Redirect,
+    // 'replace' or 'push' also is a way,
+    // of changing the page after some operation finished.
+    // Note: 'replace' has the same behavior as 'Redirect'!
+
     axios.post("/posts", data).then(response => {
       console.log(response);
-      this.setState({ submitted: true });
+      this.props.history.replace("/posts");
+      // this.setState({ submitted: true });
     });
   };
-  // Here in NewPost we probably want to redirect
-  // once we click the submit button and once we make our HTTP request.
-
-  // Now if we place 'Redirect' in jsx here outside of a switch statement,
-  // we always have to redirect with the 'to' property though, we can't use 'from'.
-  // Here we also use a condition...
-  // So we render a component to leave the page!
 
   render() {
     let redirect = null;
