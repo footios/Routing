@@ -25,7 +25,7 @@ class FullPost extends Component {
   // That's why we must implement componentDidUpdate.
 
   componentDidUpdate(prevProps, prevState) {
-    //this.loadData();
+    this.loadData();
   }
 
   //This is just a convinience method
@@ -33,10 +33,12 @@ class FullPost extends Component {
     if (this.props.match.params.id) {
       // The problem here is that the 'id' we get from the 'Route param'
       // is a 'string' and we check also for type...
+      // You either check like this '!='
+      // or convert the id to a number by adding '+' infront.
       if (
         !this.state.loadedPost ||
         (this.state.loadedPost &&
-          this.state.loadedPost.id !== this.props.match.params.id)
+          this.state.loadedPost.id !== +this.props.match.params.id)
       ) {
         axios.get("/posts/" + this.props.match.params.id).then(response => {
           //console.log(response);
@@ -45,6 +47,14 @@ class FullPost extends Component {
       }
     }
   }
+  // Conclusion:
+  // It is important to understand that you need to handle changes in componentDidUpdate,
+  // if the post component or if a component in general
+  // is already loaded through routing because the
+  // router will not unmount the old one and mount the same one again with different data.
+  // It will reuse the old one and just adjust the route parameter.
+  // It's your job to react to this new parameter and you can react to that
+  // in componentDidUpdate which will be called because the props changed.
 
   deletePostHandler = () => {
     axios.delete("/posts/" + this.props.match.params.id).then(response => {
