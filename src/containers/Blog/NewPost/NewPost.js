@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import "./NewPost.css";
 
@@ -7,7 +8,8 @@ class NewPost extends Component {
   state = {
     title: "",
     content: "",
-    author: "Max"
+    author: "Max",
+    submitted: false
   };
 
   componentDidMount = () => {
@@ -22,12 +24,27 @@ class NewPost extends Component {
     };
     // second arg: data we sent
     // you can pass also a 3d arg to configure that request
-    axios.post("/posts", data).then(response => console.log(response));
+    axios.post("/posts", data).then(response => {
+      console.log(response);
+      this.setState({ submitted: true });
+    });
   };
+  // Here in NewPost we probably want to redirect
+  // once we click the submit button and once we make our HTTP request.
+
+  // Now if we place 'Redirect' in jsx here outside of a switch statement,
+  // we always have to redirect with the 'to' property though, we can't use 'from'.
+  // Here we also use a condition...
+  // So we render a component to leave the page!
 
   render() {
+    let redirect = null;
+    if (this.state.submitted) {
+      redirect = <Redirect to="/posts" />;
+    }
     return (
       <div className="NewPost">
+        {redirect}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input
