@@ -53,21 +53,7 @@ class Posts extends Component {
         />
       ));
     }
-    // You can use the route component
-    // where ever you want in your application
-    // as long as the page the component
-    // where you are using it is wrapped by that browser router and that
-    // of course is the case because we're wrapping
-    // the blog component with it.
-    // and since the post component is just a child component
-    // of the blog component loaded through a route,
-    // this works.
 
-    // The problem is that we can not reach the FullPost route
-    // because we have the 'exact' matching for just '/'
-    // in the parent Route that renders the Posts component (see Blog.js).
-    // So "/:id" doesn't match that route and the Posts comp never gets rendered.
-    // So we need to remove 'exact' from the parent Route in Blog.js
     return (
       <div>
         <section className="Posts">{posts}</section>
