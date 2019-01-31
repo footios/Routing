@@ -64,7 +64,7 @@ class Posts extends Component {
     // this works.
 
     // The problem is that we can not reach the FullPost route
-    // because we have the 'exact' matching for just slash
+    // because we have the 'exact' matching for just '/'
     // in the parent Route that renders the Posts component (see Blog.js).
     // So "/:id" doesn't match that route and the Posts comp never gets rendered.
     // So we need to remove 'exact' from the parent Route in Blog.js
