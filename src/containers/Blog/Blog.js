@@ -42,11 +42,14 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        {/* We also need to change the order, so that "/new-post" 
-            so that "/" won't consume the new posts first.*/}
+        {/*Sometimes you want to redirect the user.
+         With that change below, you load the posts component
+          even if you go onto just '/' without /posts. 
+          But there is a different solution*/}
         <Switch>
           <Route path="/new-post" component={NewPost} />
           <Route path="/posts/" component={Posts} />
+          <Route path="/" component={Posts} />
         </Switch>
       </div>
     );

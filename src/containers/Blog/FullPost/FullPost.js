@@ -16,14 +16,6 @@ class FullPost extends Component {
     this.loadData();
   }
 
-  // Note: when we are on a given post and we click on a different post,
-  // we don't load that though you can see in the URL that the ID changes.
-  // Now the reason for this is that react router behind the scenes
-  // doesn't replace the component all the time.
-  // We actually try to load a component that we're already on,
-  // so componentDidMount is not executed again.
-  // That's why we must implement componentDidUpdate.
-
   componentDidUpdate(prevProps, prevState) {
     this.loadData();
   }
@@ -31,10 +23,6 @@ class FullPost extends Component {
   //This is just a convinience method
   loadData() {
     if (this.props.match.params.id) {
-      // The problem here is that the 'id' we get from the 'Route param'
-      // is a 'string' and we check also for type...
-      // You either check like this '!='
-      // or convert the id to a number by adding '+' infront.
       if (
         !this.state.loadedPost ||
         (this.state.loadedPost &&
@@ -47,14 +35,6 @@ class FullPost extends Component {
       }
     }
   }
-  // Conclusion:
-  // It is important to understand that you need to handle changes in componentDidUpdate,
-  // if the post component or if a component in general
-  // is already loaded through routing because the
-  // router will not unmount the old one and mount the same one again with different data.
-  // It will reuse the old one and just adjust the route parameter.
-  // It's your job to react to this new parameter and you can react to that
-  // in componentDidUpdate which will be called because the props changed.
 
   deletePostHandler = () => {
     axios.delete("/posts/" + this.props.match.params.id).then(response => {
