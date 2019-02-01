@@ -32,6 +32,18 @@ class Posts extends Component {
       });
   }
 
+  // 2.
+  // Otherwise, if you had a link like here,
+  // this.props.history.push({ pathname: "/posts/" + id });
+  // if you 'push' the page-change by clicking a post,
+  // you will navigate to '/posts'.So 'push' will always
+  // add this to your root domain.
+  // Now if your react-app is served from '/myapp',
+  // it will only work correctly and add it to the
+  // end of your domain '/myapp', if 'basename' is set up.
+  // So whenever you are serving your app from a sub directory,
+  // make sure to set 'basename'!
+
   postSelectedHandler(id) {
     this.props.history.push({ pathname: "/posts/" + id });
     // alternative:
