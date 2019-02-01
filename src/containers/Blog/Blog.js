@@ -46,20 +46,27 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        {/* Typically 'Guards' is for example used when you don't know 
-          whether the user is authenticated or not,
-          and there are some paths in your application, 
-          some routes you only want to allow the user to visit if
-          he is authenticated.
-          So e.g if we want to make sure that NewPosts can't be reached, 
-          we can simply render this conditionally.
-          This is a Guard! */}
+        {/* You can specify the route component here and if you leave out the 'path' 
+        so you don't add 'path', you can simply define a component
+        or the render method, to render something for any unknown route.
+        So here I'm going to output 'not found'.
+        Of course you could use α component and render a 404 error page component.
+        But this route will catch any routes which are not handled prior to it.*/}
         <Switch>
           {this.state.auth ? (
             <Route path="/new-post" component={NewPost} />
           ) : null}
           <Route path="/posts/" component={Posts} />
-          <Redirect from="/" to="/posts" />
+          <Route render={() => <h1>Not found</h1>} />
+          {/* 
+          Now as I said, it won't work together with 'Redirect', 
+          if you redirect from '/'. If you redirect from any
+          error page than slash, it'll work though.
+          Because 'from' is treated as a prefix and therefore it catches
+          all routes as does the 'Not found' 'Route' and therefore 
+          no matter how you order them, it won't work together.
+          
+          <Redirect from="/" to="/posts" /> */}
         </Switch>
       </div>
     );

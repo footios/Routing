@@ -13,22 +13,6 @@ class NewPost extends Component {
   };
 
   componentDidMount = () => {
-    // An alternative to render conditionaly NewPost in Blog.js
-    // would be to redirect the user back if not authenticated.
-    // e.g. If unauth => this.props.history.replace('/posts')
-
-    // !!!!!!!!!!!!!!!!!
-    // This is how you work with the react router,
-    // this is how I want you to think about it.
-    // You control a lot of it, by the way you render its components.
-    // And if that route isn't rendered, you can't reach that route.
-    // The definition isn't rendered so the component connected to it can't be loaded.
-    // This is how you have to think about it
-    // and how you have to structure your application.
-    // Wrap your head around this this is really crucial
-    // to get right and crucial to understand.
-    // !!!!!!!!!!!!!!
-
     console.log("this.props in NewPost", this.props);
   };
 
